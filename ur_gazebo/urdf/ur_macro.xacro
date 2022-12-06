@@ -94,6 +94,20 @@
     <gazebo reference="${prefix}ee_link">
       <selfCollide>true</selfCollide>
     </gazebo>
+    <!-- <gazebo reference="${prefix}sensor_link">
+      <selfCollide>true</selfCollide>
+    </gazebo> -->
+
+    <gazebo reference="sensor_link">
+      <material>Gazebo/Red</material>
+      <mu1 value="10.0"/>
+      <mu2 value="10.0"/>
+      <kp value="1000000" />
+      <kd value="1.0" />
+      <fdir1 value="1 0 0"/>
+      <gravity value="true"/>
+    </gazebo>
+
 
     <!--
       Inject Gazebo ROS Control plugin, which allows us to use ros_control
@@ -105,5 +119,19 @@
         <!--robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType-->
       </plugin>
     </gazebo>
+
+    <gazebo 
+      reference="sensor_joint">
+     <provideFeedback>true</provideFeedback>
+    </gazebo>
+
+    <gazebo>
+      <plugin name="ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+        <updateRate>100.0</updateRate>
+        <topicName>ft_sensor_topic</topicName>
+        <jointName>sensor_joint</jointName>
+      </plugin>
+    </gazebo>
+
   </xacro:macro>
 </robot>

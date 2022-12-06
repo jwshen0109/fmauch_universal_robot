@@ -325,6 +325,14 @@
     </joint>
 
     <!-- ROS-Industrial 'tool0' frame: all-zeros tool frame -->
+    <!-- <link name="${prefix}tool0"/>
+    <joint name="${prefix}flange-tool0" type="fixed">
+
+      <origin xyz="0 0 0" rpy="${pi/2.0} 0 ${pi/2.0}"/>
+      <parent link="${prefix}flange"/>
+      <child link="${prefix}tool0"/>
+    </joint> -->
+
     <link name="${prefix}tool0"/>
     <joint name="${prefix}flange-tool0" type="fixed">
       <!-- default toolframe: X+ left, Y+ up, Z+ front -->
@@ -332,5 +340,48 @@
       <parent link="${prefix}flange"/>
       <child link="${prefix}tool0"/>
     </joint>
+
+    <link name="${prefix}retractor"/>
+    <joint name="${prefix}tool0-retractor" type="fixed">
+      <!-- default toolframe: X+ left, Y+ up, Z+ front -->
+      <origin xyz="0.0126137 0 0.3209258" rpy="0 ${-2.0*pi/3.0} 0"/>
+      <parent link="${prefix}tool0"/>
+      <child link="${prefix}retractor"/>
+    </joint>
+
+    <link name="${prefix}target"/>
+    <joint name="${prefix}tool0-target" type="fixed">
+      <!-- default toolframe: X+ left, Y+ up, Z+ front -->
+      <origin xyz="0.0126137 0 0.3209258" rpy="0 0 ${pi/2.0}"/>
+      <parent link="${prefix}tool0"/>
+      <child link="${prefix}target"/>
+    </joint>
+
+    <link name="${prefix}retractor_link">
+      <visual>
+        <origin xyz="0 0 -0.006" rpy="0 0 ${pi/2.0}"/>
+        <geometry>
+          <mesh filename="package://ur_description/meshes/retractor/retractor_asm.STL"/>
+        </geometry>
+        <material name=" ">
+          <color rgba="0.79216 0.79216 0.79216 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 ${pi/2.0}"/>
+        <geometry>
+          <mesh filename="package://ur_description/meshes/retractor/retractor_asm.STL"/>
+        </geometry>
+      </collision>
+      <xacro:cylinder_inertial radius="0.0375" length="0.02"  mass="0.08">
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      </xacro:cylinder_inertial>
+    </link>
+    <joint name="${prefix}retractor_joint" type="fixed">
+      <parent link="${prefix}tool0" />
+      <child link="${prefix}retractor_link" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
   </xacro:macro>
 </robot>
