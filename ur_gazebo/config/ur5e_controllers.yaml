@@ -26,7 +26,7 @@ pos_joint_traj_controller:
 
 cartesian_motion_controller:
     type: "position_controllers/CartesianMotionController"
-    end_effector_link: "tool0"
+    end_effector_link: "target"
     robot_base_link: "base_link"
     target_frame_topic: "target_frame"
     joints:

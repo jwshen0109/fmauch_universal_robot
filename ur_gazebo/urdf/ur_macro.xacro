@@ -98,7 +98,7 @@
       <selfCollide>true</selfCollide>
     </gazebo> -->
 
-    <gazebo reference="sensor_link">
+    <!-- <gazebo reference="sensor_link">
       <material>Gazebo/Red</material>
       <mu1 value="10.0"/>
       <mu2 value="10.0"/>
@@ -106,7 +106,7 @@
       <kd value="1.0" />
       <fdir1 value="1 0 0"/>
       <gravity value="true"/>
-    </gazebo>
+    </gazebo> -->
 
 
     <!--
@@ -120,7 +120,7 @@
       </plugin>
     </gazebo>
 
-    <gazebo 
+    <!-- <gazebo 
       reference="sensor_joint">
      <provideFeedback>true</provideFeedback>
     </gazebo>
@@ -131,7 +131,7 @@
         <topicName>ft_sensor_topic</topicName>
         <jointName>sensor_joint</jointName>
       </plugin>
-    </gazebo>
+    </gazebo> -->
 
   </xacro:macro>
 </robot>
